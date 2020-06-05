@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="getPost" onClick="getPosts()">Get Posts!</button>
+    
+    <div id="container"></div>
+
+    <script>
+        getPosts = async() => {
+            const result = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        
+            let list=""
+            result.data.forEach((item)=>{
+                list +=`<li><span style="font-weight:bold">${item.title}</span> - ${item.body}</li>`;
+            })
+
+            $(`#container`).html(`<ul>${list}</ul`);
+
+        }
+
+    </script>
+</body>
+</html>
